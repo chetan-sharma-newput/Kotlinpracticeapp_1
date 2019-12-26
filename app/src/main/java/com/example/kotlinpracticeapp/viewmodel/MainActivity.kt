@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.LinearLayout
+import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,15 +53,26 @@ class MainActivity : AppCompatActivity(), OnItemClickListener{
 
         button.setOnClickListener {
 
-            var userName = et_name.text.toString()
-            var surName = et_surname.text.toString()
-            var marks =     et_marks.text.toString()
-            var percentage = et_percentage.text.toString()
-            userDataBean = UserDataBean(userName, surName,marks,percentage)
-            userArrayList!!.add(userDataBean!!)
+            var userName = et_name.text.toString().trim()
+            var surName = et_surname.text.toString().trim()
+            var marks =     et_marks.text.toString().trim()
+            var percentage = et_percentage.text.toString().trim()
 
-            setRecyclerViewAdapter()
-        }
+            if(userName=="" || surName==""|| marks=="" ||percentage=="")
+                Toast.makeText(this,"Please check before submit",Toast.LENGTH_SHORT).show()
+            else {
+                userDataBean = UserDataBean(userName, surName, marks, percentage)
+                userArrayList!!.add(userDataBean!!)
+
+                setRecyclerViewAdapter()
+
+                et_name.setText("")
+                et_surname.setText("")
+                et_marks.setText("")
+                et_percentage.setText("")
+
+            }
+            }
 
         clear_button.setOnClickListener{
 
@@ -72,7 +81,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener{
 
 
     }
-
     fun setRecyclerViewAdapter()
     {
         recyclerAdapter = ReAdapter(userArrayList, this)
@@ -92,28 +100,47 @@ class MainActivity : AppCompatActivity(), OnItemClickListener{
 
 Log.d("mainA","came"+userArrayList?.get(position)?.UserName)
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        var bundle:Bundle?=null
+        val bundle=Bundle()
 
-        bundle?.putString("name",userArrayList?.get(position)?.UserName)
-        bundle?.putString("sur_name",userArrayList?.get(position)?.UserSurName)
-        bundle?.putString("marks",userArrayList?.get(position)?.Marks)
-        bundle?.putString("percentage",userArrayList?.get(position)?.Percentage)
+        bundle.putString("name",userArrayList?.get(position)?.UserName)
+        bundle.putString("sur_name",userArrayList?.get(position)?.UserSurName)
+        bundle.putString("marks",userArrayList?.get(position)?.Marks)
+        bundle.putString("percentage",userArrayList?.get(position)?.Percentage)
 
 
-        var userMoreDetailsFragment:UserMoreDetailsFragment = UserMoreDetailsFragment()
+        val userMoreDetailsFragment = UserMoreDetailsFragment()
 
+        setVisibility(true,false)
+
+        userMoreDetailsFragment.arguments=bundle
         fragmentTransaction=fragment_manager?.beginTransaction();
         fragmentTransaction?.replace(R.id.frame_layout,userMoreDetailsFragment)
         fragmentTransaction?.commit()
-        userMoreDetailsFragment.arguments=bundle
-        setVisibility(View.VISIBLE,View.GONE)
+
+//        frameLayout?.visibility=View.VISIBLE
+//        linearLayout?.visibility=View.GONE
 
     }
 
-    public fun setVisibility(frame:Int,linear:Int){
+    public fun setVisibility(frame:Boolean,linear:Boolean){
 
-        frameLayout?.visibility=frame
-        linearLayout?.visibility=linear
+        if(frame.equals(true))
+        {
+            frameLayout?.visibility=View.VISIBLE
+            linearLayout?.visibility=View.GONE
+
+        }
+        else {
+            frameLayout?.visibility = View.GONE
+            linearLayout?.visibility = View.VISIBLE
+
+        }
     }
 
+    override fun onBackPressed() {
+//        super.onBackPressed()
+
+        setVisibility(false,true)
+
+    }
 }
