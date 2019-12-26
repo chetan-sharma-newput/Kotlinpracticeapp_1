@@ -21,7 +21,7 @@ class UserMoreDetailsFragment : Fragment() {
     var sur_name_tv_f: TextView? = null
     var marks_tv_f: TextView? = null
     var percentage_tv_f: TextView? = null
-//    var ok_button: Button? = null
+    var ok_button: Button? = null
 
 
     override fun onCreateView(
