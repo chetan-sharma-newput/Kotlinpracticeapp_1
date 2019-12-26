@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/border"
+            android:id="@+id/name_tv_f"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hello_blank_fragment" />
+
+        <TextView
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/border"
+            android:id="@+id/sur_name_tv_f"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hello_blank_fragment" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/marks_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name_layout"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/border"
+            android:id="@+id/marks_tv_f"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hello_blank_fragment" />
+
+        <TextView
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@drawable/border"
+            android:id="@+id/percentage_tv_f"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hello_blank_fragment" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:id="@+id/ok_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/marks_layout"
+        android:text="Ok" />
+</RelativeLayout>

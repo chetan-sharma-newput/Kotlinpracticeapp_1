@@ -1,4 +1,4 @@
-package com.example.kotlinpracticeapp
+package com.example.kotlinpracticeapp.datamodels
 
 import android.R
 
