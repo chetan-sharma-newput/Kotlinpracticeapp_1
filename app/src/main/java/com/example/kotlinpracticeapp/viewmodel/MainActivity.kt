@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener{
             var surName = et_surname.text.toString().trim()
             var marks =     et_marks.text.toString().trim()
             var percentage = et_percentage.text.toString().trim()
+//var ja :EditText
+//            sfsfas
 
             if(userName=="" || surName==""|| marks=="" ||percentage=="")
                 Toast.makeText(this,"Please check before submit",Toast.LENGTH_SHORT).show()
